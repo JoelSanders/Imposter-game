@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cave Imposter - 3JS Visual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Cave Imposter - 3D Visual</h1>
+
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui">
+            <!-- Existing UI structure -->
+            <div id="roomInfo">
+                <h2>Current Room: <span id="roomName">Unknown</span></h2>
+                <p id="roomDesc">...</p>
+                <p>Players Here: <span id="playersInRoom"></span></p>
+                 <p>Bodies Here: <span id="bodiesInRoom"></span></p>
+                 <p>Task Objects: <span id="tasksInRoom"></span></p> <!-- Added -->
+            </div>
+            <div id="playerInfo">
+                <h2>Player <span id="playerId">?</span> (<span id="playerRole">?</span>) - <span id="playerStatus">?</span></h2>
+                 <p>Tasks (<span id="tasksCompleted">0</span>/<span id="tasksTotal">0</span>): <ul id="taskList"></ul></p>
+                 <p>Kill Cooldown: <span id="killCooldown">N/A</span></p>
+                 <p>Sabotage Cooldown: <span id="sabotageCooldown">N/A</span></p> <!-- Added -->
+            </div>
+            <div id="gameLog">
+                <h2>Log / Action Helper</h2>
+                <div id="logMessages"></div>
+                <!-- Action Prompt is now more of a status/helper -->
+                <div id="actionPrompt"><p>Click on objects in the 3D view to interact.</p></div>
+                <!-- Input might be used for specific minigames later -->
+                <input type="text" id="playerInput" placeholder="Minigame input..." style="display: none;">
+            </div>
+             <div id="globalInfo">
+                <h2>Global Status</h2>
+                <p>Crew Tasks: <span id="globalTasksCompleted">0</span>/<span id="globalTasksTotal">0</span></p>
+                <p>Sabotage: <span id="sabotageStatus">None</span></p>
+                <p>Oxygen Timer: <span id="oxygenTimer">OK</span></p>
+             </div>
+             <!-- Simple overlay for minigame instructions -->
+             <div id="minigameOverlay" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.8); border: 1px solid #0f0; padding: 20px; text-align: center; z-index: 10;">
+                <h3 id="minigameTitle">Minigame</h3>
+                <p id="minigameInstruction">Instructions...</p>
+                <input type="text" id="minigameInput" placeholder="Enter sequence...">
+                <button id="minigameSubmit">Submit</button>
+                 <div id="minigameRapidPressArea" style="display:none;">
+                    <p>Press the button!</p>
+                    <button id="minigameRapidButton">PRESS</button>
+                    <p>Progress: <span id="minigameProgress">0</span> / <span id="minigameTarget">0</span></p>
+                 </div>
+                  <div id="minigameTimedHoldArea" style="display:none;">
+                    <p>Press and HOLD the button, release after timer!</p>
+                    <button id="minigameHoldButton">HOLD</button>
+                    <p>Hold Time: <span id="minigameHoldTimer">0.0</span>s</p>
+                 </div>
+                 <p id="minigameTimer">Time Left: <span id="minigameTimeRemaining">10</span>s</p>
+             </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.min.js"></script>
+    <!-- Orbit Controls (optional, needs to be imported as module if game.js is module) -->
+    <script type="module" src="https://threejs.org/examples/jsm/controls/OrbitControls.js"></script>
+
+
+    <script type="module" src="game.js"></script> <!-- Use type="module" -->
+</body>
+</html>
